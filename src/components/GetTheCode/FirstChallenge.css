@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.first{
+    background-color: green;
+    /* height: 2rem; */
+    margin: 4rem;
+}
+.second{
+    background-color: red;
+    height: 2rem;
+    
+}
+.third{
+    background-color: blue;
+    height: 2rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.fourth{
+    background-color: brown;
+    height: 2rem;
+    margin-left: 1rem;
+}
