@@ -2,7 +2,7 @@
 
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './Room1.css';
 import myImage from '../assests/room1-firstpic.webp';
 import Story from '../../components/story/Story';
