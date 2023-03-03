@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/api';
+import './Login.css'
 import { LoggedUserContext } from '../../components/context/context';
 function Login() {
   const [username, setUsername] = useState('');
@@ -32,6 +33,9 @@ function Login() {
         if (user) {
           setLoggedIn(true);
           setLoggedUser(user)
+          localStorage.setItem('userID',user.id )
+          localStorage.setItem('user',JSON.stringify(user) );
+
           console.log(loggedUser);
         } else {
           setRegisterMode(false);
@@ -47,10 +51,10 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className='container'>
+      <div className="thall">
       <h1>Escape Room Game</h1>
-      <h1>{error}</h1>
-
+      <h4>{error}</h4>
       <form>
         <label>Username:</label>
         <input type="text" value={username} onChange={handleUsernameChange} />
@@ -60,6 +64,7 @@ function Login() {
         <br />
         <button onClick={handleSubmit}>logs in</button>
       </form>
+      </div>
 
       {loggedIn && (
         <p>
@@ -81,3 +86,4 @@ function Login() {
 }
 
 export default Login;
+

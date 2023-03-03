@@ -1,74 +1,56 @@
-
-
-
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
 import './Room1.css';
 import myImage from '../assests/room1-firstpic.webp';
-import Story from '../../components/story/Story';
-import FirstChallenge from '../../components/GetTheCode/FirstChallenge';
+import modal1Image from '../../pages/assests/numberscolors.png';
+import modal4Image from '../../pages/assests/imgcolors.gif';
+import FirstChallenge from '../../components/Challenge/FirstChallenge';
+import { SecondChallenge } from '../../components/ChallengeTwo/SecondChallenge';
+import Modal from '../../components/modalFirst/Modal';
+
 function Room1() {
-
   const [isSolved, setIsSolved] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  if (isDarkMode) {
-    const bodyElement = document.querySelector('body');
-    bodyElement.classList.add('hide-content');
-  }
+  const [istrueLight, settrueLight] = useState(false)
+  const [isComplete, setIsComplete] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(null);
+  const [isOpenModal1, setOpenModal1] = useState(false);
+  const [isOpenModal4, setOpenModal4] = useState(false);
 
-  const handleModeToggle = () => {
-    setIsDarkMode(!isDarkMode);
-    const bodyElement = document.querySelector('body');
-    bodyElement.classList.toggle('hide-content');
-
-    const contentElement = document.querySelector('.mode-toggle');
-    contentElement.classList.toggle('hidden');
+  const handleModeToggle = (e) => {
+    e.target.style.display = 'none';
+    settrueLight(true);
   };
 
-  const [isComplete, setIsComplete] = useState(false);
+  const openModal1 = () => {
+    setOpenModal1(true);
+  };
+
+  const openModal4 = () => {
+    setOpenModal4(true);
+  };
 
   return (
-      <div className={isDarkMode ? 'dark-mode' : 'light-mode'}>
-        <button onClick={handleModeToggle} className="mode-toggle"></button>
+    <>
+      <div className={istrueLight ? 'theall' : 'offit'}>
         {!isSolved ? (
           <div className="content">
             <img src={myImage} alt="Room 1" />
             <>
-
-              <Story />
-              <FirstChallenge isComplete={isComplete} setIsComplete={setIsComplete} />
+              <button onClick={handleModeToggle} className="mode-toggle"></button>
+              <button onClick={openModal1} className="modal"></button>
+              {isOpenModal1 && <Modal closeModal={setOpenModal1} className="modal1" imageSrc={modal1Image} modalNumber={1} />
+}
+              <button onClick={openModal4} className="modal4"></button>
+              {isOpenModal4 && <Modal closeModal={setOpenModal4} className="modal4" imageSrc={modal4Image} />}
+              <FirstChallenge isComplete={isComplete} setIsComplete={setIsComplete} elapsedTime={elapsedTime} setElapsedTime={setElapsedTime} />
+              <SecondChallenge/>
             </>
           </div>
         ) : (
           <div className="content"></div>
         )}
       </div>
+    </>
   );
 }
 
 export default Room1;
-
-
-
-
-
-
-
-
-// const [showResult, setShowResult] = useState(false);
-// const handleTimeout = () => {
-//   setShowResult(true);
-// };
-
-{/* <h1>Room 1</h1>
-<Timer timeLimit={60} onTimeout={handleTimeout} />
-{showResult ? (
-  <div>
-    <h2>Time's up!</h2>
-    <Link to="/">Go back to home</Link>
-  </div>
-) : (
-  <div>
-    <h2>Play the game here</h2>
-  </div>
-)} */}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/api';
+import './Register.css';
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -41,24 +42,26 @@ function Register() {
 
     if (isRegistered) {
         return (
-            <div>
-                <h1>Registration Successful!</h1>
-                <p>You can now <Link to="/">login</Link> with your new account.</p>
+            <div className="container">
+                <h1 className="title">Registration Successful!</h1>
+                <p className="message">You can now <Link to="/" className="link">login</Link> with your new account.</p>
             </div>
         );
     }
 
     return (
-        <div>
-            <h1>Register</h1>
-            {error && <p>{error}</p>}
-            <label>Username:</label>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <div className="container">
+            <div className="fixAll2">
+            <h1 className="title">Register</h1>
+            {error && <p className="error">{error}</p>}
+            <label className="label">Username:</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="input" />
             <br />
-            <label>Password:</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <label className="label">Password:</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" />
             <br />
-            <button onClick={handleRegister}>Register</button>
+            <button onClick={handleRegister} className="button">Register</button>
+        </div>
         </div>
     );
 }
