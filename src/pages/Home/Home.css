@@ -1,8 +1,26 @@
 .fixAll{
-    background-color: red;
+    background-color: rgba(0, 0, 0, 0.074);
+    max-width: 40rem;
     display: flex;
     flex-direction: column;
     text-align: center;
     padding: 2rem;
     gap: 1rem;
+}
+.escapeddelte{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid black;
+}
+.continerdelte{
+    visibility: hidden;
+}
+.notdisplay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

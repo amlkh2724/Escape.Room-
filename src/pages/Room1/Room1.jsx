@@ -6,7 +6,7 @@ import modal4Image from '../../pages/assests/imgcolors.gif';
 import FirstChallenge from '../../components/Challenge/FirstChallenge';
 import { SecondChallenge } from '../../components/ChallengeTwo/SecondChallenge';
 import Modal from '../../components/modalFirst/Modal';
-
+// import ModalTwo from '../../components/CodeModal/CodeModal';
 function Room1() {
   const [isSolved, setIsSolved] = useState(false);
   const [istrueLight, settrueLight] = useState(false)
@@ -41,6 +41,7 @@ function Room1() {
 }
               <button onClick={openModal4} className="modal4"></button>
               {isOpenModal4 && <Modal closeModal={setOpenModal4} className="modal4" imageSrc={modal4Image} />}
+              {/* <ModalTwo></ModalTwo> */}
               <FirstChallenge isComplete={isComplete} setIsComplete={setIsComplete} elapsedTime={elapsedTime} setElapsedTime={setElapsedTime} />
               <SecondChallenge/>
             </>

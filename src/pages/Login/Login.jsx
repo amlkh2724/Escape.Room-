@@ -10,6 +10,7 @@ function Login() {
   const [error, setError] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const {loggedUser, setLoggedUser}= LoggedUserContext()
+  const [timeElapsed, setTimeElapsed] = useState(null);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -17,20 +18,24 @@ function Login() {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+    
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (registerMode) {
       // Register new user
-      const response = await api.post('/escape', { username, password });
-      console.log(response.data);
+      // const response = await api.post('/escape', { username, password });
+      // console.log(response.data);
+      setTimeElapsed(null);
     } else {
       // Log in existing user
       const response = await api.get('/escape');
       if (response.data.length > 0) {
         const user = response.data.find((u) => u.username === username && u.password === password);
         if (user) {
+          // user.timeElapsed=null
+          console.log(user);
           setLoggedIn(true);
           setLoggedUser(user)
           localStorage.setItem('userID',user.id )
@@ -57,30 +62,32 @@ function Login() {
       <h4>{error}</h4>
       <form>
         <label>Username:</label>
-        <input type="text" value={username} onChange={handleUsernameChange} />
+        <input type="text" value={username} onChange={handleUsernameChange} placeholder="Enter your username"/>
         <br />
         <label>Password:</label>
-        <input type="password" value={password} onChange={handlePasswordChange} />
+        <input type="password" value={password} onChange={handlePasswordChange} placeholder="Enter your password"/>
         <br />
         <button onClick={handleSubmit}>logs in</button>
-      </form>
-      </div>
-
-      {loggedIn && (
+        {!loggedIn && registerMode ? (
         <p>
-          You are now logged in! <Link to="/home">Go to home page</Link>
-        </p>
-      )}
-
-      {!loggedIn && registerMode ? (
-        <p>
-          Already have an account? <Link to="/home">Log in here</Link>
+          {/* Already have an account? <Link to="/home">Log in here</Link> */}
         </p>
       ) : (
         <p>
           Don't have an account? <Link to="/register">Register here</Link>
         </p>
       )}
+        {loggedIn && (
+        <p>
+          You are now logged in! <Link to="/home">Go to home page</Link>
+        </p>
+      )}
+      </form>
+      </div>
+
+
+
+    
     </div>
   );
 }

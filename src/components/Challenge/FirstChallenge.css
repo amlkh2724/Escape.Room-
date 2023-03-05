@@ -23,3 +23,23 @@
     height: 2rem;
     margin-left: 1rem;
 }
+/* .theAllPage {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+  }
+.buttonLock{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+    
+} */
+.buttonLock{
+    position: absolute;
+    background: none;
+    left: 44%;
+    top: 60%;
+    width: 2rem;
+    height:2rem;
+}
