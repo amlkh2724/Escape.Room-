@@ -4,7 +4,7 @@ import myImage from '../assests/room1-firstpic.webp';
 import modal1Image from '../../pages/assests/numberscolors.png';
 import modal4Image from '../../pages/assests/imgcolors.gif';
 import FirstChallenge from '../../components/Challenge/FirstChallenge';
-import { SecondChallenge } from '../../components/ChallengeTwo/SecondChallenge';
+// import { SecondChallenge } from '../../components/ChallengeTwo/SecondChallenge';
 import Modal from '../../components/modalFirst/Modal';
 // import ModalTwo from '../../components/CodeModal/CodeModal';
 function Room1() {
@@ -43,7 +43,7 @@ function Room1() {
               {isOpenModal4 && <Modal closeModal={setOpenModal4} className="modal4" imageSrc={modal4Image} />}
               {/* <ModalTwo></ModalTwo> */}
               <FirstChallenge isComplete={isComplete} setIsComplete={setIsComplete} elapsedTime={elapsedTime} setElapsedTime={setElapsedTime} />
-              <SecondChallenge/>
+              {/* <SecondChallenge/> */}
             </>
           </div>
         ) : (

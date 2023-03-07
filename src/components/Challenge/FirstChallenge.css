@@ -23,23 +23,30 @@
     height: 2rem;
     margin-left: 1rem;
 }
-/* .theAllPage {
-    position: absolute;
-    height: 100vh;
+.theAllPage2 {
     width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-.buttonLock{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-
-    
-} */
-.buttonLock{
-    position: absolute;
-    background: none;
-    left: 44%;
-    top: 60%;
+  
+  .buttonLock {
+    position: relative;
     width: 2rem;
-    height:2rem;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7rem;
+    background: none; 
+    left: -1rem;
+  }
+  
+  .buttonLock img {
+    align-items: center;
+    justify-content: center;
+  
+    width: 2rem;
+    object-fit: contain;
+
+  }

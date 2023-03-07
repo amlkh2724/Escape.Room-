@@ -46,7 +46,7 @@ function Home({ setShowRoom1 }) {
           <div className={display ? "continerdelte" : "notdisplay"}>
             {timerElapsed !== null && (
               <>
-                <h1>You escaped in: {timerElapsed} seconds</h1>
+                <h1>You escaped in: {timerElapsed + Number(localStorage.getItem('counter'))} seconds</h1>
                 <button onClick={delteTimer}>Delete</button>
               </>
             )}
