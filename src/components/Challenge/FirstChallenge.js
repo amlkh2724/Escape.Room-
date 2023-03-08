@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import './FirstChallenge.css';
 import Timer from '../CountDownTimer/Timer';
 import api from '../../api/api';
-import ModalTwo from '../CodeModalCoreectCode/CodeModal';
+import ModalTwo from '../CodeModal/CodeModal';
 import BombChallenge from './SecondChallengebomb/BombChallenge';
 import lockImg from '../../pages/assests/lockGifCode.gif';
-import Story from '../Story/Story';
+import Story from '../story/Story';
 
 
 const FirstChallenge = () => {
