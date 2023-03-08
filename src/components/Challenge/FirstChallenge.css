@@ -44,13 +44,13 @@
     background: none;
 }
 
-.buttonLock>img {
+.buttonLock img {
     width: 2rem;
     object-fit: contain;
 
 }
-@media (min-width:800px){
+/* @media (min-width:800px){
     .buttonLock{
         right: 3rem;
     }
-}
+} */
