@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AppProvider } from './components/context/context';
-
+import { IsBombDisarmedProvider } from './components/context/isWinContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AppProvider>
+      <IsBombDisarmedProvider>
     <App />
+    </IsBombDisarmedProvider>
     </AppProvider>
   </React.StrictMode>
 );

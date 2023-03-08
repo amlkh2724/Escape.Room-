@@ -8,13 +8,16 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Registster';
 import Home from './pages/Home/Home';
 import Room1 from './pages/Room1/Room1';
+import Story from './components/story/Story';
 
 
 function App() {
+  
   const router = createBrowserRouter([
     { path: '/', element: <Login /> },
     { path: '/register', element: <Register /> },
     { path: '/home', element: <Home /> },
+    { path: '/story', element: <Story /> },
     { path: '/room1', element: <Room1 /> },
   ]);
   // const [username, setUserName] = useState("");

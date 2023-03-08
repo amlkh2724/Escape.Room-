@@ -2,21 +2,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './BombChallenge.css';
-
-const BombChallenge = ({timerCount}) => {
+import Home from '../../../pages/Home/Home';
+import { useIsBombDisarmedContext } from '../../context/isWinContext';
+const BombChallenge = () => {
   const [countdown, setCountdown] = useState(20); // start the countdown at 60 seconds
   const [bombActive, setBombActive] = useState(true); // set the bomb to active
-  const [bombDisarmed, setBombDisarmed] = useState(false); // set the bomb to not disarmed
+  // const [bombDisarmed, setBombDisarmed] = useState(false); // set the bomb to not disarmed
   const [holdPosition, setHoldPosition] = useState({ x: 0, y: 0 }); // set initial hold button position to top-left
   const [buttonClicked, setButtonClicked] = useState(false);
   const [timerCount3, setTimerCountrusume] = useState(0);
   const [timerOff, setTimerOff] = useState(true);
 
-
+   const {bombDisarmed,setBombDisarmed}=useIsBombDisarmedContext()
   const [holdButtonInPosition, setHoldButtonInPosition] = useState(false);
   useEffect(() => {
     localStorage.setItem('counter', '0');
-    
+
   }, []);
 
   useEffect(() => {
@@ -27,13 +28,13 @@ const BombChallenge = ({timerCount}) => {
       // }
       localStorage.setItem('counter', JSON.stringify(Number(localStorage.getItem('counter')) + 1));
     }, 1000);
-    if(bombDisarmed){
+    if (bombDisarmed) {
       clearInterval(resumeTimer)
     }
     return () => {
       clearInterval(resumeTimer);
     };
-  },[bombDisarmed])
+  }, [bombDisarmed])
   // start the countdown timer when the component mounts
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,7 +67,7 @@ const BombChallenge = ({timerCount}) => {
     // if (newX < 2 && newX <= 690 && newY >= 200 && newY <= 220){
     //   alert("cant movie")
     //   return
-      
+
     // }
   };
   // handle the player releasing the hold button
@@ -99,7 +100,7 @@ const BombChallenge = ({timerCount}) => {
         <>
           <div className="bomb-timer">
             <div className='postionbutton'>
-            <button className='cutit' onClick={handleButtonClick}></button>
+              <button className='cutit' onClick={handleButtonClick}></button>
             </div>
             <div className='reachthisway'></div>
             <div className={`bomb-timer__progress ${countdown < 10 ? 'bomb-timer__critical' : countdown < 20 ? 'bomb-timer__danger' : ''}`} style={{ width: `${countdown / 60 * 100}%` }}></div>
@@ -114,19 +115,24 @@ const BombChallenge = ({timerCount}) => {
             <div className="hold-button__text"></div>
             <div className="hold-button__circle"></div>
           </div>
+
         </>
       ) : (
         <div>
-          
-          
-        {bombDisarmed ? (
-          <div>
-        <h1 className='success'>Bomb Disarmed!</h1> 
-        <Link className='homee' to="/home">asd</Link>
-        </div>
-        
-        ):(
-         <h1 className='failure'>Boom!</h1>)}</div>
+
+
+          {bombDisarmed ? (
+            <div className='fixtocenter'>
+              <h1 className='success'>Bomb Disarmed!</h1>
+              <h1 className='getLink'><Link className='homee' to="/home">back to home page</Link></h1>
+            </div>
+
+          ) : (
+            <div className='fixToCenter'>
+              <h1 className='failure'>you lost!</h1>
+              <h1><Link to='/home'>back to home page</Link></h1>
+            </div>
+          )}</div>
       )}
     </div>
   );

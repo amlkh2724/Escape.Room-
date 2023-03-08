@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './Timer.css'
 function Timer({ timeLimit, onTimeout }) {
   const [timeLeft, setTimeLeft] = useState(timeLimit);
 
@@ -17,7 +17,15 @@ function Timer({ timeLimit, onTimeout }) {
     }
   }, [timeLeft, onTimeout]);
 
-  return <div>{timeLeft} seconds left</div>;
+  return(
+    
+    <div className='containerTimer'>
+    <div className='fixTimeStyle'>{timeLeft} seconds left</div>
+    </div>
+    
+    
+    
+    )
 }
 
 export default Timer;

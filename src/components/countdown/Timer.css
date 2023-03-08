@@ -1,0 +1,22 @@
+.containerTimer {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.fixTimeStyle {
+    margin: 1rem;
+    position: absolute;
+    z-index: -2;
+    padding: 1rem;
+    text-align: center;
+    -webkit-box-shadow: inset 0px 0px 26px 18px #000000;
+    box-shadow: inset 0px 0px 26px 18px #000000;
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgba(0, 0, 0, 0.231));
+    width: 40%;
+    color: white;
+    font-weight: bold;
+
+
+}
