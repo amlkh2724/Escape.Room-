@@ -4,7 +4,7 @@ import myImage from '../assests/room1-firstpic.webp';
 import modal1Image from '../../pages/assests/numberscolors.png';
 import modal4Image from '../../pages/assests/imgcolors.gif';
 import FirstChallenge from '../../components/Challenge/FirstChallenge';
-import Modal from '../../components/modalFirst/Modal';
+import Modal from '../../components/ModalforTwoSearching/Modal';
 function Room1() {
   const [isSolved, setIsSolved] = useState(false);
   const [istrueLight, settrueLight] = useState(false)

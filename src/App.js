@@ -8,7 +8,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Registster';
 import Home from './pages/Home/Home';
 import Room1 from './pages/Room1/Room1';
-import Story from './components/story/Story';
+import Story from './components/Story/Story';
 
 
 function App() {

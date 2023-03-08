@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './FirstChallenge.css';
-import Timer from '../countdown/Timer';
+import Timer from '../CountDownTimer/Timer';
 import api from '../../api/api';
-import ModalTwo from '../CodeModal/CodeModal';
+import ModalTwo from '../CodeModalCoreectCode/CodeModal';
 import BombChallenge from './SecondChallengebomb/BombChallenge';
 import lockImg from '../../pages/assests/lockGifCode.gif';
-import Story from '../story/Story';
+import Story from '../Story/Story';
 
 
 const FirstChallenge = () => {
