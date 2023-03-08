@@ -1,0 +1,75 @@
+.arrowOne {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    animation: arrowOneAnimation 3s ease-in-out infinite;
+
+
+}
+
+.arrowTwo {
+    position: absolute;
+    right: 12%;
+    top: 25%;
+    animation: arrowTwoAnimation 3s ease-in-out infinite;
+
+}
+
+.postionButtonHint {
+    position: absolute;
+    left: 0;
+    top: 81%;
+    background: none;
+    border: 2px solid black;
+    margin: 1rem;
+}
+
+.red {
+    color: rgb(59, 55, 55);
+    animation: changeBackgroundColor 3s infinite;
+}
+
+@media(min-width:800px) {
+    .arrowTwo {
+        right: 15%;
+    }
+}
+
+
+@keyframes changeBackgroundColor {
+    0% {
+        color: rgb(133, 133, 133);
+    }
+
+    50% {
+        color: rgb(65, 65, 65);
+    }
+
+    100% {
+        color: rgb(0, 0, 0);
+    }
+}
+
+@keyframes arrowOneAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes arrowTwoAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

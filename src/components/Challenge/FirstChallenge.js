@@ -9,7 +9,7 @@ import ModalTwo from '../CodeModal/CodeModal';
 import BombChallenge from './SecondChallengebomb/BombChallenge';
 import lockImg from '../../pages/assests/lockGifCode.gif';
 import Story from '../story/Story';
-
+import Hint from '../TipToFindTheWay/Hint';
 
 const FirstChallenge = () => {
   const [inputValue, setInputValue] = useState('');
@@ -17,6 +17,7 @@ const FirstChallenge = () => {
   const [isGameWon, setIsGameWon] = useState(false);
   const [timerCount, setTimerCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [openHint, SetOpenHint] = useState(false)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -42,11 +43,13 @@ const FirstChallenge = () => {
       clearInterval(intervalId);
     }
 
+
     return () => clearInterval(intervalId);
   }, [isGameWon, timerCount]);
 
   const handleTimeout = () => {
     if (!isGameWon) {
+
       setShowResult(true);
     }
   };
@@ -62,6 +65,10 @@ const FirstChallenge = () => {
   const openModal = () => {
     setShowModal(true);
   };
+  const Hint2 = () => {
+    SetOpenHint((prevState) => !prevState);
+  };
+
 
   return (
     <>
@@ -88,6 +95,11 @@ const FirstChallenge = () => {
                 </button>
               </div>
               {showModal && <ModalTwo closeModal={setShowModal} onWin={handleModalTwoResult} inputValue={inputValue} />}
+              <div className='containerPostionButton'>
+              <button className='postionButtonHint' onClick={Hint2}>Hint</button>
+
+              </div>
+              {openHint && <Hint SetOpenHint={SetOpenHint}></Hint>}
             </div>
           )}
         </>

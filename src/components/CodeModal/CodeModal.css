@@ -19,3 +19,23 @@
   .containerModal{
     text-align: center;
   }
+  .numberButtonsContainer{
+    display: flex;
+    gap: 0.5rem;
+    margin: 0 2rem;
+  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 50vw; */
+  }
+  .numberButtonRow{
+    width: 80%;
+    display: flex;
+    align-self: center;
+    justify-content: space-around;
+
+  }
+  .pinCodeInputContainer{
+    margin-top: 1rem;
+  }

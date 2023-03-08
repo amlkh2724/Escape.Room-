@@ -43,7 +43,9 @@
     justify-content: center;
     gap: 1rem;
 }
-
+.numberbigger  P{
+    font-weight: bold;
+}
 .container3 p:nth-child(1)
 {
     background-color: blue;

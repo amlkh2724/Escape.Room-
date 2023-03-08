@@ -27,7 +27,7 @@ const ModalTwo = ({ closeModal, onWin, inputValue }) => {
             <div className={`modalContainer2`} onClick={handleModalContainerClick}>
                 <div className='containerModal'>
                     <div className='pinCodeInputContainer'>
-                        <input type='text' value={pinCode} onChange={handlePinCodeChange} />
+                        <input type='text' value={pinCode} onChange={handlePinCodeChange} placeholder="Enter the pin code"/>
                     </div>
                     <div className='numberButtonsContainer'>
                         <div className='numberButtonRow'>

@@ -7,6 +7,7 @@ const Modal = ({ closeModal, className, imageSrc, modalNumber }) => {
       <div className={`modalContainer ${className}`}>
         <img src={imageSrc} className="modalImage" alt="modalImage" />
         {modalNumber === 1 &&<div className='number'>
+          <div className='numberbigger'>
           <div className='continer'>
             <p>5</p>
             <p>6</p>
@@ -32,6 +33,7 @@ const Modal = ({ closeModal, className, imageSrc, modalNumber }) => {
             <p>9</p>
           </div>
           
+          </div>
           </div>}
       </div>
     </div>
