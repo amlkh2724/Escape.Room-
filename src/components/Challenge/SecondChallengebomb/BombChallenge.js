@@ -10,20 +10,30 @@ const BombChallenge = ({timerCount}) => {
   const [holdPosition, setHoldPosition] = useState({ x: 0, y: 0 }); // set initial hold button position to top-left
   const [buttonClicked, setButtonClicked] = useState(false);
   const [timerCount3, setTimerCountrusume] = useState(0);
+  const [timerOff, setTimerOff] = useState(true);
+
 
   const [holdButtonInPosition, setHoldButtonInPosition] = useState(false);
-  const [Iswin,setwin]=useState("")
   useEffect(() => {
     localStorage.setItem('counter', '0');
+    
+  }, []);
+
+  useEffect(() => {
     const resumeTimer = setInterval(() => {
       setTimerCountrusume((prevCount) => prevCount + 1);
+      // if (!localStorage.getItem('counter')) {
+      //   localStorage.setItem('counter', '0');
+      // }
       localStorage.setItem('counter', JSON.stringify(Number(localStorage.getItem('counter')) + 1));
     }, 1000);
-
+    if(bombDisarmed){
+      clearInterval(resumeTimer)
+    }
     return () => {
       clearInterval(resumeTimer);
     };
-  },[])
+  },[bombDisarmed])
   // start the countdown timer when the component mounts
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,8 +63,12 @@ const BombChallenge = ({timerCount}) => {
     } else {
       setHoldButtonInPosition(false);
     }
+    // if (newX < 2 && newX <= 690 && newY >= 200 && newY <= 220){
+    //   alert("cant movie")
+    //   return
+      
+    // }
   };
-
   // handle the player releasing the hold button
   const handleHoldRelease = () => {
     if (buttonClicked) {
@@ -62,7 +76,7 @@ const BombChallenge = ({timerCount}) => {
       setBombDisarmed(true);
       setBombActive(false);
     } else {
-      // setHoldPosition({ x: 0, y: 0 });
+      // setHoldPosition({ x: , y: 5 });
     }
   };
 
@@ -71,6 +85,7 @@ const BombChallenge = ({timerCount}) => {
     if (holdButtonInPosition) {
       setBombDisarmed(true);
       setBombActive(false);
+      setTimerOff(false)
     }
   };
 
