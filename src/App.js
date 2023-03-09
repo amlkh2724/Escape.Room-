@@ -8,6 +8,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Registster';
 import Home from './pages/Home/Home';
 import Room1 from './pages/Room1/Room1';
+import Room2 from './pages/Room2/Room2';
 import Story from './components/story/Story';
 
 
@@ -19,6 +20,7 @@ function App() {
     { path: '/home', element: <Home /> },
     { path: '/story', element: <Story /> },
     { path: '/room1', element: <Room1 /> },
+    { path: '/room2', element: <Room2 /> },
   ]);
   // const [username, setUserName] = useState("");
 

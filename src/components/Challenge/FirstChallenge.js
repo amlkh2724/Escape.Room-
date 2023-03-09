@@ -6,9 +6,11 @@ import './FirstChallenge.css';
 import Timer from '../CountDownTimer/Timer';
 import api from '../../api/api';
 import ModalTwo from '../CodeModal/CodeModal';
-import BombChallenge from './SecondChallengebomb/BombChallenge';
+import { useNavigate } from 'react-router-dom';
+
+// import BombChallenge from './SecondChallengebomb/BombChallenge';
 import lockImg from '../../pages/assests/lockGifCode.gif';
-import Story from '../story/Story';
+// import Story from '../story/Story';
 import Hint from '../TipToFindTheWay/Hint';
 
 const FirstChallenge = () => {
@@ -18,7 +20,17 @@ const FirstChallenge = () => {
   const [timerCount, setTimerCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [openHint, SetOpenHint] = useState(false)
+  const navigate = useNavigate();
 
+
+
+
+
+  // const navigate = useNavigate();
+
+  // import { useNavigate } from 'react-router-dom';
+
+  // <button onClick={() => navigate('/room2')}>Submit</button>
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimerCount((prevCount) => prevCount + 1);
@@ -68,15 +80,17 @@ const FirstChallenge = () => {
   const Hint2 = () => {
     SetOpenHint((prevState) => !prevState);
   };
-
+  useEffect(() => {
+    if (isGameWon) {
+      navigate('/room2');
+    }
+  }, [isGameWon]);
 
   return (
     <>
       {isGameWon ? (
         <div>
-
-          <BombChallenge />
-
+          {/* {navigate('/room2')} */}
         </div>
       ) : (
         <>
@@ -96,7 +110,7 @@ const FirstChallenge = () => {
               </div>
               {showModal && <ModalTwo closeModal={setShowModal} onWin={handleModalTwoResult} inputValue={inputValue} />}
               <div className='containerPostionButton'>
-              <button className='postionButtonHint' onClick={Hint2}>Hint</button>
+                <button className='postionButtonHint' onClick={Hint2}>Hint</button>
 
               </div>
               {openHint && <Hint SetOpenHint={SetOpenHint}></Hint>}

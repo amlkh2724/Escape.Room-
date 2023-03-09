@@ -35,9 +35,10 @@ function Login() {
         const user = response.data.find((u) => u.username === username && u.password === password);
         if (user) {
           // user.timeElapsed=null
-          console.log(user);
+          console.log("userinformation",user);
           setLoggedIn(true);
           setLoggedUser(user)
+          localStorage.setItem('loggedUser', user.username);
           localStorage.setItem('userID',user.id )
           localStorage.setItem('user',JSON.stringify(user) );
 
@@ -58,7 +59,7 @@ function Login() {
   return (
     <div className='container'>
       <div className="thall">
-      <h1>Escape Room Game</h1>
+      <h1 className='underLineStyle'>Escape Room Game</h1>
       <h4>{error}</h4>
       <form>
         <label>Username:</label>
@@ -67,7 +68,7 @@ function Login() {
         <label>Password:</label>
         <input type="password" value={password} onChange={handlePasswordChange} placeholder="Enter your password"/>
         <br />
-        <button onClick={handleSubmit}>logs in</button>
+        <button className='fixButtonStyle' onClick={handleSubmit}>Login</button>
         {!loggedIn && registerMode ? (
         <p>
           {/* Already have an account? <Link to="/home">Log in here</Link> */}

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './CodeModal.css';
+// import { useNavigate } from 'react-router-dom';
 
 const ModalTwo = ({ closeModal, onWin, inputValue }) => {
     const [pinCode, setPinCode] = useState(inputValue);
-
+    // const navigate = useNavigate();
     const handlePinCodeChange = (event) => {
         const newPinCode = event.target.value;
         setPinCode(newPinCode);
@@ -49,7 +50,7 @@ const ModalTwo = ({ closeModal, onWin, inputValue }) => {
                             <button onClick={() => handleNumberButtonClick('0')}>0</button>
                         </div>
                         <div className='submitButtonContainer'>
-                            <button onClick={() => onWin(pinCode)}>Submit</button>
+                            <button onClick={() =>{ onWin(pinCode)}}>Submit</button>
                         </div>
                     </div>
                 </div>

@@ -53,7 +53,7 @@ function Register() {
     return (
         <div className="container">
             <div className="fixAll2">
-            <h1 className="title">Register</h1>
+            <h1 className="underLineStyle2">Register</h1>
             {error && <p className="error">{error}</p>}
             <label className="label">Username:</label>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="input" />
@@ -61,7 +61,7 @@ function Register() {
             <label className="label">Password:</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" />
             <br />
-            <button onClick={handleRegister} className="button">Register</button>
+            <button onClick={handleRegister} className="fixButtonStyle">Register</button>
         </div>
         </div>
     );
