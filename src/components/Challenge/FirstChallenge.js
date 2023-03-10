@@ -34,6 +34,8 @@ const FirstChallenge = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimerCount((prevCount) => prevCount + 1);
+      localStorage.setItem('counterFirstChallenge', JSON.stringify(Number(localStorage.getItem('counter')) + 1));
+
     }, 1000);
 
     const postTimeElapsed = async () => {

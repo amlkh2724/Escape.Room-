@@ -1,62 +1,50 @@
+
 import { LoggedUserContext } from '../../components/context/context';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import api from '../../api/api';
 import { useEffect, useState } from 'react';
 import { useIsBombDisarmedContext } from '../../components/context/isWinContext';
+
 function Home() {
-  const { loggedUser,setBombActive,setCountdown,setHoldPosition ,setButtonClicked,setTimerCountrusume,setTimerOff} = LoggedUserContext();
-  console.log("you logges is:", loggedUser);
-  const [timerElapsed, setTimerElapsed] = useState(loggedUser.timerElapsed);
-  const [display, setdisplay] = useState(false);
-  const [isPlayed, setIsPlayed] = useState(false);
-  // CONST [USERID, SETUSERID] = USESTATE(NULL)
-  const { bombDisarmed, setBombDisarmed } = useIsBombDisarmedContext()
+  const { setBombActive, setCountdown, setHoldPosition, setButtonClicked, setTimerCountrusume, setTimerOff } = LoggedUserContext();
+  const [timerElapsed, setTimerElapsed] = useState(null);
+  const [display, setDisplay] = useState(false);
+  const { bombDisarmed } = useIsBombDisarmedContext();
 
-  /* USEEFFECT{()=>{
-    CONST USERFROMLOCALSTORAGE = ocalStorage.getItem('userID') || NULL;
-    IF(USERFROMLOCALSTORAGE){
-      SETUSERID(USERFROMLOCALSTORAGE)
-    } ELSE {
-      NAVIGATE('/')
-    }
-  },[]}
-  */
-useEffect(()=>{
-  setCountdown(60)
-  setBombActive(true)
-  setHoldPosition({ x: 0, y: 0 })
-  setButtonClicked(false)
-  setTimerCountrusume(0)
-  setTimerOff(true)
-
-},[])
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userID = localStorage.getItem('userID');
-        const response = await api.get(`/escape/${userID}`);
-        const updatedTimerElapsed = response.data.timerElapsed;
-        setTimerElapsed(updatedTimerElapsed);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchUser();
+    const userID = localStorage.getItem('userID');
+    fetchUser(userID);
+    setCountdown(60);
+    setBombActive(true);
+    setHoldPosition({ x: 0, y: 0 });
+    setButtonClicked(false);
+    setTimerCountrusume(0);
+    setTimerOff(true);
   }, []);
 
-  const delteTimer = async () => {
+  const fetchUser = async (userID) => {
     try {
-      setdisplay(true)
-      const userID = localStorage.getItem('userID');
-      await api.put(`/escape/${userID}`, { timerElapsed: null });
-      setTimerElapsed(null);
-
+      const response = await api.get(`/escape/${userID}`);
+      const updatedTimerElapsed = response.data.timerElapsed;
+      setTimerElapsed(updatedTimerElapsed);
+      localStorage.setItem(`timerElapsed_${userID}`, updatedTimerElapsed); // store timerElapsed for this user in local storage
     } catch (error) {
       console.error(error);
     }
   };
 
+  const deleteTimer = async () => {
+    try {
+      setDisplay(true);
+      const userID = localStorage.getItem('userID');
+      await api.put(`/escape/${userID}`, { timerElapsed: null });
+      setTimerElapsed(null);
+      localStorage.removeItem(`timerElapsed_${userID}`); // remove timerElapsed for this user from local storage
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className='container'>
@@ -64,28 +52,164 @@ useEffect(()=>{
         <h1>Welcome, {localStorage.getItem('loggedUser')}</h1>
         <div className='escapeddelte'>
           <div className={display ? 'continerdelte' : 'notdisplay'}>
-            {bombDisarmed ? (
-              (
-                <>
-                  <h1>You escaped in: {timerElapsed + Number(localStorage.getItem('counter'))} seconds</h1>
-                  <button onClick={delteTimer}>Delete</button>
-                </>
-              )
-            ) : (
-              ""
-
-            )}
+            {/* {bombDisarmed ? ( */}
+              {/* <> */}
+        {timerElapsed && <p>Current time: {timerElapsed} seconds</p>}
+                <button onClick={deleteTimer}>Delete</button>
+              {/* </> */}
+            {/* ):( */}
+              {/* "" */}
+            {/* )} */}
           </div>
         </div>
 
         <Link to='/story'>Go to Room1</Link>
+        {/* {timerElapsed && <p>Current time: {timerElapsed} seconds</p>} */}
       </div>
     </div>
   );
 }
 
-
 export default Home;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { LoggedUserContext } from '../../components/context/context';
+// import { Link } from 'react-router-dom';
+// import './Home.css';
+// import api from '../../api/api';
+// import { useEffect, useState } from 'react';
+// import { useIsBombDisarmedContext } from '../../components/context/isWinContext';
+// function Home() {
+//   const { loggedUser,setBombActive,setCountdown,setHoldPosition ,setButtonClicked,setTimerCountrusume,setTimerOff} = LoggedUserContext();
+//   console.log("you logges is:", loggedUser);
+//   const [timerElapsed, setTimerElapsed] = useState(loggedUser.timerElapsed);
+//   const [display, setdisplay] = useState(false);
+//   // const [isPlayed, setIsPlayed] = useState(false);
+//   // CONST [USERID, SETUSERID] = USESTATE(NULL)
+//   const [checkUser,setCheckUser]=useState(false)
+//   const { bombDisarmed, setBombDisarmed } = useIsBombDisarmedContext()
+
+//   /* USEEFFECT{()=>{
+//     CONST USERFROMLOCALSTORAGE = ocalStorage.getItem('userID') || NULL;
+//     IF(USERFROMLOCALSTORAGE){
+//       SETUSERID(USERFROMLOCALSTORAGE)
+//     } ELSE {
+//       NAVIGATE('/')
+//     }
+//   },[]}
+//   */
+// useEffect(()=>{
+//   setCountdown(60)
+//   setBombActive(true)
+//   setHoldPosition({ x: 0, y: 0 })
+//   setButtonClicked(false)
+//   setTimerCountrusume(0)
+//   setTimerOff(true)
+
+// },[])
+// const fetchUser = async () => {
+//   try {
+//     const userID = localStorage.getItem('userID');
+//     const response = await api.get(`/escape/${userID}`);
+//     const updatedTimerElapsed = response.data.timerElapsed;
+//     setTimerElapsed(updatedTimerElapsed);
+//     localStorage.setItem(`timerElapsed_${userID}`, updatedTimerElapsed); // store timerElapsed for this user in local storage
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+
+//   const delteTimer = async () => {
+//     try {
+//       setdisplay(true);
+//       const userID = localStorage.getItem('userID');
+//       await api.put(`/escape/${userID}`, { timerElapsed: null });
+//       setTimerElapsed(null);
+//       localStorage.removeItem(`timerElapsed_${userID}`); // remove timerElapsed for this user from local storage
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+  
+
+// // useEffect(()=>{
+// //   const getid=localStorage.getItem("userID")
+// //   if(loggedUser.id===getid){
+// //     setCheckUser(true)
+
+// //   }
+
+// // },[])
+//   return (
+//     <div className='container'>
+//       <div className='fixAll'>
+//         <h1>Welcome, {localStorage.getItem('loggedUser')}</h1>
+//         <div className='escapeddelte'>
+//           <div className={display ? 'continerdelte' : 'notdisplay'}>
+//             {/* {bombDisarmed ? ( */}
+//               {/* ( */}
+//                 {/* <> */}
+//                   { <h1>You escaped in: {Number(localStorage.getItem("counterFirstChallenge")) + Number(localStorage.getItem('counter'))} seconds</h1>}
+//                   <button onClick={delteTimer}>Delete</button>
+//                 {/* </> */}
+//               {/* ) */}
+//             {/* ) : ( */}
+//               {/* "" */}
+
+//             {/* )} */}
+//           </div>
+//         </div>
+
+//         <Link to='/story'>Go to Room1</Link>
+//       </div>
+//     </div>
+//   );
+// }
+
+// // {...loggedUser, time:}
+// // const obj = {
+// //   userID: ,
+// //   time:
+
+// // }
+
+// export default Home;
 
 
 
@@ -124,3 +248,35 @@ export default Home;
 // import { useNavigate } from 'react-router-dom';
 
 // <button onClick={() => navigate('/room2')}>Submit</button>
+
+
+
+
+
+
+
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const userID = localStorage.getItem('userID');
+  //       const response = await api.get(`/escape/${userID}`);
+  //       const updatedTimerElapsed = response.data.timerElapsed;
+  //       setTimerElapsed(updatedTimerElapsed);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchUser();
+  // }, []);
+
+  // const delteTimer = async () => {
+  //   try {
+  //     setdisplay(true)
+  //     const userID = localStorage.getItem('userID');
+  //     await api.put(`/escape/${userID}`, { timerElapsed: null });
+  //     setTimerElapsed(null);
+
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
