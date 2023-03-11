@@ -38,7 +38,7 @@ function Room1() {
               {isOpenModal1 && <Modal closeModal={setOpenModal1} className="modal1" imageSrc={modal1Image} modalNumber={1} />}
               <button onClick={openModal4} className="modal4"></button>
               {isOpenModal4 && <Modal closeModal={setOpenModal4} className="modal4" imageSrc={modal4Image} />}
-              <FirstChallenge isComplete={isComplete} setIsComplete={setIsComplete} elapsedTime={elapsedTime} setElapsedTime={setElapsedTime} />
+              <FirstChallenge isComplete={isComplete} setIsComplete={setIsComplete}  />
             </>
           </div>
         ) : (

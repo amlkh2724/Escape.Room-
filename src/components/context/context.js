@@ -11,6 +11,7 @@ const AppProvider = ({ children }) => {
   const [timerCount3, setTimerCountrusume] = useState(0);
   const [timerOff, setTimerOff] = useState(true);
   const [holdButtonInPosition, setHoldButtonInPosition] = useState(false);
+  const [isLost,setIsLost]=useState(false)
 
   return (
     <AppContext.Provider
@@ -30,7 +31,10 @@ const AppProvider = ({ children }) => {
         timerOff,
         setTimerOff,
         holdButtonInPosition,
-        setHoldButtonInPosition
+        setHoldButtonInPosition,
+        isLost,
+        setIsLost
+
       }}
     >
       {children}

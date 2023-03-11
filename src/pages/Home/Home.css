@@ -29,3 +29,27 @@
     justify-content: center;
 }
 
+table, 
+thead,
+tbody,
+td,
+tr {
+
+    border: 1px solid white;
+}
+td {
+
+    padding: 0.5rem 1rem;
+}
+
+.displayBackGroundButton{
+    background: none;
+}
+.startButton2{
+    position: absolute;
+    left: 0;
+    top:0;
+    margin: 1rem;
+    color: white;
+    background: none;
+}

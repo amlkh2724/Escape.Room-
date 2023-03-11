@@ -1,14 +1,18 @@
 
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Room2.css';
 // import Home from '../../../pages/Home/Home';
 import { useIsBombDisarmedContext } from '../../components/context/isWinContext';
 import { LoggedUserContext } from '../../components/context/context';
-
+import api from '../../api/api';
 const Room2 = () => {
+  const [getCurrentTimeRoom2,SetCurrentTimeRoom2]=useState(0)
   const { 
-  setTimerCountrusume,
   setCountdown,
   countdown,
   setBombActive,
@@ -18,42 +22,61 @@ const Room2 = () => {
   buttonClicked,
   holdButtonInPosition,
   setTimerOff,
-  bombActive
+  bombActive,
 
+  setIsLost
 } = LoggedUserContext();
+
+
 useEffect(() => {
-//   localStorage.setItem('counter', '0');
-  
-  setCountdown(60)
-  // setBombDisarmed(false)
-  
+  setCountdown(60)  
+  setIsLost(false)
 }, []);
 
 
 
    const {bombDisarmed,setBombDisarmed}=useIsBombDisarmedContext()
-  // const [holdButtonInPosition, setHoldButtonInPosition] = useState(false);
-  useEffect(() => {
-    // localStorage.setItem('counter', '0');
 
-  }, []);
-
+        
+   useEffect(()=>{
+    setBombDisarmed(false)
+   },[])
   useEffect(() => {
     const resumeTimer = setInterval(() => {
-      setTimerCountrusume((prevCount) => prevCount + 1);
-      // if (!localStorage.getItem('counter')) {
-      //   localStorage.setItem('counter', '0');
-      // }
-      localStorage.setItem('counter', JSON.stringify(Number(localStorage.getItem('counter')) + 1));
+      SetCurrentTimeRoom2((prevCount) => prevCount + 1);
     }, 1000);
+
+
+
+
+    const postTimeElapsedAllTime = async () => {
+      try{
+        const currentTimeRoom1 = localStorage.getItem('CurrentTimeRoom1');
+        let totalTimerAllRooms= Number(currentTimeRoom1) + Number(getCurrentTimeRoom2)
+        const userID = localStorage.getItem('userID');
+        await api.put(
+          `/escape/${userID}`,
+          {
+            timerElapsed: totalTimerAllRooms,
+          }
+        );
+        // console.log("currentTimeRoom1:",totalTimerAllRooms);
+      }catch(error){
+        console.error(error)
+      }
+   
+      
+    }
     if (bombDisarmed) {
+      
+      postTimeElapsedAllTime()
       clearInterval(resumeTimer)
     }
     return () => {
       clearInterval(resumeTimer);
     };
   }, [bombDisarmed])
-  // start the countdown timer when the component mounts
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCountdown(countdown => countdown - 1);
@@ -77,7 +100,7 @@ useEffect(() => {
     setHoldPosition({ x: newX, y: newY });
 
     // check if hold button is in the correct position
-    if (newX > 2 && newX <= 690 && newY >= 200 && newY <= 220) {
+    if (newX > 170 && newX <= 830 && newY >= 200 && newY <= 230) {
       setHoldButtonInPosition(true);
     } else {
       setHoldButtonInPosition(false);
@@ -93,6 +116,7 @@ useEffect(() => {
     if (buttonClicked) {
       console.log("hi");
       setBombDisarmed(true);
+      setIsLost(true)
       setBombActive(false);
     } else {
       // setHoldPosition({ x: , y: 5 });
@@ -103,10 +127,14 @@ useEffect(() => {
   const handleButtonClick = () => {
     if (holdButtonInPosition) {
       setBombDisarmed(true);
+      setIsLost(true)
       setBombActive(false);
       setTimerOff(false)
     }
   };
+  // if(bombDisarmed === false){
+  //   setIsLost(true)
+  // }
 
   return (
     <div className='pics'>
@@ -141,14 +169,14 @@ useEffect(() => {
 
           {bombDisarmed ? (
             <div className='fixtocenter'>
-              <h1 className='success'>Bomb Disarmed!</h1>
-              <h1 className='getLink'><Link className='homee' to="/home">back to home page</Link></h1>
+              <h1 className='success'></h1>
+              <h1 className='getLink'><Link className='fixthelink' to="/home">back to home page</Link></h1>
             </div>
 
           ) : (
-            <div className='fixToCenter'>
-              <h1 className='failure'>you lost!</h1>
-              <h1><Link to='/home'>back to home page</Link></h1>
+            <div className='fixToCenterlost'>
+              <h1 className='failure'></h1>
+              <h1><Link className='fixthelink' to='/home'>back to home page</Link></h1>
             </div>
           )}</div>
       )}

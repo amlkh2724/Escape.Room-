@@ -24,33 +24,15 @@ const FirstChallenge = () => {
 
 
 
-
-
-  // const navigate = useNavigate();
-
-  // import { useNavigate } from 'react-router-dom';
-
-  // <button onClick={() => navigate('/room2')}>Submit</button>
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimerCount((prevCount) => prevCount + 1);
-      localStorage.setItem('counterFirstChallenge', JSON.stringify(Number(localStorage.getItem('counter')) + 1));
 
     }, 1000);
 
     const postTimeElapsed = async () => {
-      try {
-        const userID = localStorage.getItem('userID');
-        await api.put(
-          `/escape/${userID}`,
-          {
-            timerElapsed: timerCount,
-          }
-        );
-      } catch (error) {
-        console.error(error);
-      }
-    };
+        localStorage.setItem("CurrentTimeRoom1",timerCount)
+    }
 
     if (isGameWon) {
       postTimeElapsed();
@@ -59,7 +41,7 @@ const FirstChallenge = () => {
 
 
     return () => clearInterval(intervalId);
-  }, [isGameWon, timerCount]);
+  }, [isGameWon]);
 
   const handleTimeout = () => {
     if (!isGameWon) {

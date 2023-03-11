@@ -33,7 +33,8 @@ function Register() {
             await api.post('/escape', {
                 username: username,
                 password: password,
-                timerElapsed:null
+                timerElapsed:null,
+                gameList:[]
             });
             setIsRegistered(true);
         } catch (error) {
