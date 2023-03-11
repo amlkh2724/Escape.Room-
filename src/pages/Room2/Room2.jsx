@@ -1,46 +1,41 @@
 
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Room2.css';
-// import Home from '../../../pages/Home/Home';
 import { useIsBombDisarmedContext } from '../../components/context/isWinContext';
 import { LoggedUserContext } from '../../components/context/context';
 import api from '../../api/api';
 const Room2 = () => {
-  const [getCurrentTimeRoom2,SetCurrentTimeRoom2]=useState(0)
-  const { 
-  setCountdown,
-  countdown,
-  setBombActive,
-  setHoldPosition,
-  holdPosition, 
-  setHoldButtonInPosition,
-  buttonClicked,
-  holdButtonInPosition,
-  setTimerOff,
-  bombActive,
+  const [getCurrentTimeRoom2, SetCurrentTimeRoom2] = useState(0)
+  const {
+    setCountdown,
+    countdown,
+    setBombActive,
+    setHoldPosition,
+    holdPosition,
+    setHoldButtonInPosition,
+    buttonClicked,
+    holdButtonInPosition,
+    setTimerOff,
+    bombActive,
 
-  setIsLost
-} = LoggedUserContext();
-
-
-useEffect(() => {
-  setCountdown(60)  
-  setIsLost(false)
-}, []);
+    setIsLost
+  } = LoggedUserContext();
 
 
+  useEffect(() => {
+    setCountdown(60)
+    setIsLost(false)
+  }, []);
 
-   const {bombDisarmed,setBombDisarmed}=useIsBombDisarmedContext()
 
-        
-   useEffect(()=>{
+
+  const { bombDisarmed, setBombDisarmed } = useIsBombDisarmedContext()
+
+
+  useEffect(() => {
     setBombDisarmed(false)
-   },[])
+  }, [])
   useEffect(() => {
     const resumeTimer = setInterval(() => {
       SetCurrentTimeRoom2((prevCount) => prevCount + 1);
@@ -50,9 +45,9 @@ useEffect(() => {
 
 
     const postTimeElapsedAllTime = async () => {
-      try{
+      try {
         const currentTimeRoom1 = localStorage.getItem('CurrentTimeRoom1');
-        let totalTimerAllRooms= Number(currentTimeRoom1) + Number(getCurrentTimeRoom2)
+        let totalTimerAllRooms = Number(currentTimeRoom1) + Number(getCurrentTimeRoom2)
         const userID = localStorage.getItem('userID');
         await api.put(
           `/escape/${userID}`,
@@ -61,14 +56,14 @@ useEffect(() => {
           }
         );
         // console.log("currentTimeRoom1:",totalTimerAllRooms);
-      }catch(error){
+      } catch (error) {
         console.error(error)
       }
-   
-      
+
+
     }
     if (bombDisarmed) {
-      
+
       postTimeElapsedAllTime()
       clearInterval(resumeTimer)
     }
@@ -87,7 +82,6 @@ useEffect(() => {
       clearInterval(interval);
       setBombActive(false);
     }
-
     return () => clearInterval(interval);
   }, [countdown]);
 
@@ -105,13 +99,8 @@ useEffect(() => {
     } else {
       setHoldButtonInPosition(false);
     }
-    // if (newX < 2 && newX <= 690 && newY >= 200 && newY <= 220){
-    //   alert("cant movie")
-    //   return
 
-    // }
   };
-  // handle the player releasing the hold button
   const handleHoldRelease = () => {
     if (buttonClicked) {
       console.log("hi");
@@ -119,7 +108,6 @@ useEffect(() => {
       setIsLost(true)
       setBombActive(false);
     } else {
-      // setHoldPosition({ x: , y: 5 });
     }
   };
 
@@ -132,10 +120,6 @@ useEffect(() => {
       setTimerOff(false)
     }
   };
-  // if(bombDisarmed === false){
-  //   setIsLost(true)
-  // }
-
   return (
     <div className='pics'>
       <div className='centerit'>
@@ -144,7 +128,9 @@ useEffect(() => {
       </div>
       {bombActive ? (
         <>
+        
           <div className="bomb-timer">
+            
             <div className='postionbutton'>
               <button className='cutit' onClick={handleButtonClick}></button>
             </div>
@@ -161,6 +147,7 @@ useEffect(() => {
             <div className="hold-button__text"></div>
             <div className="hold-button__circle"></div>
           </div>
+          <div className='imgHelp'></div>
 
         </>
       ) : (
@@ -185,8 +172,3 @@ useEffect(() => {
 };
 
 export default Room2
-
-
-
-
-                // {/* </div>onWin(pinCode) */}

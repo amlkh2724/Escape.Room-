@@ -4,13 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './FirstChallenge.css';
 import Timer from '../CountDownTimer/Timer';
-import api from '../../api/api';
 import ModalTwo from '../CodeModal/CodeModal';
 import { useNavigate } from 'react-router-dom';
-
-// import BombChallenge from './SecondChallengebomb/BombChallenge';
 import lockImg from '../../pages/assests/lockGifCode.gif';
-// import Story from '../story/Story';
 import Hint from '../TipToFindTheWay/Hint';
 
 const FirstChallenge = () => {
@@ -31,7 +27,7 @@ const FirstChallenge = () => {
     }, 1000);
 
     const postTimeElapsed = async () => {
-        localStorage.setItem("CurrentTimeRoom1",timerCount)
+      localStorage.setItem("CurrentTimeRoom1", timerCount)
     }
 
     if (isGameWon) {

@@ -1,51 +1,52 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   height: 100vh;
-    /* background-color: red; */
 
 }
-body{
+
+body {
   background: url('../../../src/pages/assests/escapebackground.jpg') no-repeat center center/cover;
-    /* background: linear-gradient(to right, rgb(255, 255, 255), rgba(0, 0, 0, 0.772)); */
 
 }
+
 .thall {
   background-color: #2020207a;
   color: white;
-    padding: 3rem;
-    -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, inset 5px 5px 15px 5px rgba(0,0,0,0); 
-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, inset 5px 5px 15px 5px rgba(0,0,0,0);
+  padding: 3rem;
+  -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, inset 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, inset 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 form {
-    /* background-color: aqua; */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 h4 {
-    text-align: center;
-    color: red;
+  text-align: center;
+  color: red;
 }
 
-input{
+input {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
-.fixButtonStyle{
+
+.fixButtonStyle {
   background-color: rgba(0, 0, 0, 0.627);
-color: white;
-border: 3px solid #d38922;
-  
+  color: white;
+  border: 3px solid #d38922;
+
 }
-.underLineStyle{
+
+.underLineStyle {
   text-decoration: underline #d38922;
 }

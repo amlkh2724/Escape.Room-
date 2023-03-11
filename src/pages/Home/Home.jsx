@@ -6,7 +6,7 @@ import api from '../../api/api';
 import { useEffect, useState } from 'react';
 
 function Home() {
-  const {setBombActive, setCountdown, setHoldPosition, setButtonClicked, setTimerCountrusume, setTimerOff,isLost,setIsLost ,isOnline,SetOnline} = LoggedUserContext();
+  const { setBombActive, setCountdown, setHoldPosition, setButtonClicked, setTimerCountrusume, setTimerOff, isLost, setIsLost, isOnline, SetOnline } = LoggedUserContext();
   const [timerElapsed, setTimerElapsed] = useState(null);
   const [display, setDisplay] = useState(false);
   const [gameList, setGameList] = useState([]);
@@ -22,7 +22,7 @@ function Home() {
     fetchGames(userID, timerElapsed);
     setIsLost(true)
   }, [timerElapsed]);
-  
+
   const fetchUser = async (userID) => {
     try {
       const response = await api.get(`/escape/${userID}`);
@@ -37,18 +37,18 @@ function Home() {
     try {
       const response = await api.put(`/escape/${userID}`);
       const gameList = response.data.gameList;
-  
+
       if (timerElapsed !== null && isLost === true) {
         const currentDate = formatDate(new Date());
         const currentTime = formatTime(new Date());
         let updatedGames = [...gameList];
-  
+
         // Check if the gameList has any items before deleting the last one
         if (updatedGames.length > 0 && isOnline) {
           updatedGames.pop();
-          SetOnline(false) // Remove the last game from the list
+          SetOnline(false) 
         }
-  
+
         // Add the new game to the updated list
         updatedGames.push({
           id: Date.now(),
@@ -56,7 +56,7 @@ function Home() {
           time: currentTime,
           timeElapsed: timerElapsed,
         });
-  
+
         await api.put(`/escape/${userID}`, { gameList: updatedGames });
         setGameList(updatedGames);
       }
@@ -64,7 +64,7 @@ function Home() {
       console.error(error);
     }
   };
-  
+
   const deleteGame = async (gameId) => {
     const updatedGames = gameList.filter((game) => game.id !== gameId);
     setGameList(updatedGames);
@@ -75,8 +75,8 @@ function Home() {
       console.error(error);
     }
   };
-  
-  
+
+
 
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -95,11 +95,11 @@ function Home() {
 
   return (
     <div className='container'>
-         <Link to='/'>
-            <button className='startButton2'>Logout</button>
-          </Link>
+      <Link to='/'>
+        <button className='startButton2'>Logout</button>
+      </Link>
       <div className='fixAll'>
-        <h1>Welcome, {localStorage.getItem('loggedUser')}</h1>
+        <h1>Welcome,<span className='fixName'>{localStorage.getItem('loggedUser')}</span></h1>
         <div className='escapeddelte'>
           <div className={display ? 'continerdelte' : 'notdisplay'}>
             <table>
@@ -111,21 +111,21 @@ function Home() {
                 </tr>
               </thead>
               <tbody>
-  {gameList.map((game, index) => (
-    <tr key={game.id}>
-      <td>{game.date}</td>
-      <td>{game.time}</td>
-      <td>{game.timeElapsed}</td>
-      <td>
-        <button className='displayBackGroundButton' onClick={() => deleteGame(game.id)}><i className="fa-solid fa-trash-can" style={{ color: 'white' }}></i>
-</button>
-      </td>
-    </tr>
-  ))}
-</tbody>
+                {gameList.map((game, index) => (
+                  <tr key={game.id}>
+                    <td>{game.date}</td>
+                    <td>{game.time}</td>
+                    <td>{game.timeElapsed}</td>
+                    <td>
+                      <button className='displayBackGroundButton' onClick={() => deleteGame(game.id)}><i className="fa-solid fa-trash-can" style={{ color: 'white' }}></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
 
             </table>
-      
+
           </div>
         </div>
         <div className='containerButton'>

@@ -9,7 +9,6 @@ function Room1() {
   const [isSolved, setIsSolved] = useState(false);
   const [istrueLight, settrueLight] = useState(false)
   const [isComplete, setIsComplete] = useState(false);
-  const [elapsedTime, setElapsedTime] = useState(null);
   const [isOpenModal1, setOpenModal1] = useState(false);
   const [isOpenModal4, setOpenModal4] = useState(false);
 
