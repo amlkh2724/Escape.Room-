@@ -116,7 +116,7 @@ function Home() {
       <td>{game.time}</td>
       <td>{game.timeElapsed}</td>
       <td>
-        <button className='displayBackGroundButton' onClick={() => deleteGame(game.id)}><i class="fa-solid fa-trash-can" style={{ color: 'white' }}></i>
+        <button className='displayBackGroundButton' onClick={() => deleteGame(game.id)}><i className="fa-solid fa-trash-can" style={{ color: 'white' }}></i>
 </button>
       </td>
     </tr>
