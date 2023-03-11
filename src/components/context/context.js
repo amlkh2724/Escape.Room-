@@ -4,6 +4,7 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [loggedUser, setLoggedUser] = useState({});
+  const[isOnline,SetOnline]=useState(false)
   const [countdown, setCountdown] = useState(60); // start the countdown at 60 seconds
   const [bombActive, setBombActive] = useState(true); // set the bomb to active
   const [holdPosition, setHoldPosition] = useState({ x: 0, y: 0 }); // set initial hold button position to top-left
@@ -33,7 +34,10 @@ const AppProvider = ({ children }) => {
         holdButtonInPosition,
         setHoldButtonInPosition,
         isLost,
-        setIsLost
+        setIsLost,
+        isOnline,
+        SetOnline
+
 
       }}
     >

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/api';
 import './Login.css'
@@ -9,7 +9,7 @@ function Login() {
   const [registerMode, setRegisterMode] = useState(false);
   const [error, setError] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
-  const {loggedUser, setLoggedUser}= LoggedUserContext()
+  const {loggedUser, setLoggedUser,SetOnline}= LoggedUserContext()
   const [timeElapsed, setTimeElapsed] = useState(null);
 
   const handleUsernameChange = (event) => {
@@ -20,8 +20,11 @@ function Login() {
     setPassword(event.target.value);
     
   };
-
+useEffect(() => {
+ SetOnline(false)
+}, []);
   const handleSubmit = async (event) => {
+    SetOnline(true)
     event.preventDefault();
     if (registerMode) {
       // Register new user
