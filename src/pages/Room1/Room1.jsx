@@ -32,7 +32,7 @@ function Room1() {
           <div className="content">
             <img src={myImage} alt="Room 1" />
             <>
-              <button onClick={handleModeToggle} className="mode-toggle"></button>
+              <button onClick={handleModeToggle} className="mode-toggle"><i class="fa-regular fa-lightbulb"></i></button>
               <button onClick={openModal1} className="modal"></button>
               {isOpenModal1 && <Modal closeModal={setOpenModal1} className="modal1" imageSrc={modal1Image} modalNumber={1} />}
               <button onClick={openModal4} className="modal4"></button>

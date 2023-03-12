@@ -94,7 +94,7 @@ const Room2 = () => {
     setHoldPosition({ x: newX, y: newY });
 
     // check if hold button is in the correct position
-    if (newX > 170 && newX <= 830 && newY >= 200 && newY <= 230) {
+    if (newX > 1 ) {
       setHoldButtonInPosition(true);
     } else {
       setHoldButtonInPosition(false);

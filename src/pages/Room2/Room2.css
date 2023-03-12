@@ -122,6 +122,9 @@
   height: 5rem;
   z-index: 100;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.454);
+  border-radius: 2rem;
+
 
 }
 
@@ -211,7 +214,7 @@
   width: 10rem;
   height: 10rem;
   background: url('../assests/hintofroom2.gif') no-repeat center center/cover;
-
+  border: 1px solid white;
 }
 @keyframes spark {
   0% {
