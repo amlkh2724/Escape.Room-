@@ -46,7 +46,7 @@ function Home() {
         // Check if the gameList has any items before deleting the last one
         if (updatedGames.length > 0 && isOnline) {
           updatedGames.pop();
-          SetOnline(false) 
+          SetOnline(false)
         }
 
         // Add the new game to the updated list

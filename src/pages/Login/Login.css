@@ -13,6 +13,8 @@ body {
 }
 
 .thall {
+  border-radius: 2rem;
+
   background-color: #2020207a;
   color: white;
   padding: 3rem;

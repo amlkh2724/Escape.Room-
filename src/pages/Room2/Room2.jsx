@@ -92,9 +92,9 @@ const Room2 = () => {
     const newX = x + event.movementX;
     const newY = y + event.movementY;
     setHoldPosition({ x: newX, y: newY });
-
+    // if (newX > 170 && newX <= 830 && newY >= 200 && newY <= 230)
     // check if hold button is in the correct position
-    if (newX > 1 ) {
+    if (newX > 20) {
       setHoldButtonInPosition(true);
     } else {
       setHoldButtonInPosition(false);
@@ -157,13 +157,13 @@ const Room2 = () => {
           {bombDisarmed ? (
             <div className='fixtocenter'>
               <h1 className='success'></h1>
-              <h1 className='getLink'><Link className='fixthelink' to="/home">back to home page</Link></h1>
+              <h1 className='getLink'><Link className='fixthelink' to="/home">Back to home page</Link></h1>
             </div>
 
           ) : (
             <div className='fixToCenterlost'>
               <h1 className='failure'></h1>
-              <h1><Link className='fixthelink' to='/home'>back to home page</Link></h1>
+              <h1><Link className='fixthelink' to='/home'>Back to home page</Link></h1>
             </div>
           )}</div>
       )}
